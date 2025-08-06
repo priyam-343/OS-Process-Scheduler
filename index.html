@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home Page</title>
+    <link rel="icon" href="cpuu.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body>
+    <div class="header-section">
+      <div class="cpu-icon">
+        <img src="cpu.jpg" alt="CPU Icon" class="cpu-image" />
+      </div>
+      <h1 class="main-title">CPU Scheduler</h1>
+      <p class="description">
+        Explore different CPU scheduling algorithms through interactive
+        visualization
+      </p>
+    </div>
+
+    <div class="box">
+      <div class="signup">
+        
+        <form>
+          <label for="inputs" class="input-label">⚡ Scheduling Algorithm</label>
+          <select id="algos" class="inpts">
+            <option value="" class="inpt">Choose Algorithm</option>
+            <option value="FCFS" class="inpt">FCFS</option>
+            <option value="SJF" class="inpt">SJF</option>
+            <option value="SRTF" class="inpt">SRTF</option>
+            <option value="Round Robin" class="inpt">Round Robin</option>
+            <option value="Priority" class="inpt">Priority</option>
+          </select>
+
+          <label for="timeQuanta" class="input-label" id="timeQuantaLabel" style="display: none;">⚡ Time Quanta</label>
+          <select id="timeQuanta" class="inpts" hidden>
+            <option value="" class="inpt">Choose Time Quanta</option>
+            <option value="1" class="inpt">1</option>
+            <option value="2" class="inpt">2</option>
+            <option value="3" class="inpt">3</option>
+            <option value="4" class="inpt">4</option>
+            <option value="5" class="inpt">5</option>
+            <option value="6" class="inpt">6</option>
+            <option value="7" class="inpt">7</option>
+            <option value="8" class="inpt">8</option>
+            <option value="9" class="inpt">9</option>
+            <option value="10" class="inpt">10</option>
+          </select>
+
+          <label for="inputs" class="input-label">⚡ Input Type</label>
+          <select name="cars" id="inputs" class="inpts">
+            <option value="" class="inpt">Choose Input type</option>
+            <option value="manual" class="inpt">Manual</option>
+            <option value="random" class="inpt">Random</option>
+          </select>
+
+          <div class="but" id="start">
+            <input type="button" value="Start" class="butt" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

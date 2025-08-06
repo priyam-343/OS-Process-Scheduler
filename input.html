@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Input Page</title>
+    <link rel="icon" href="cpuu.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./input.css" />
+  </head>
+
+  <body>
+    <div class="box">
+      <h2 id="signupp">Input Field</h2>
+
+      <div class="take">
+        <form>
+          <div class="inpts">
+            <input
+              class="inpt"
+              placeholder="Process Id "
+              id="pid"
+              title="E.g: p1"
+              required
+            />
+          </div>
+          <div class="inpts">
+            <input
+              class="inpt"
+              placeholder="Arrival Time"
+              id="at"
+              type="number"
+              min="0"
+              oninput="validity.valid||(value='');"
+              required
+            />
+
+          </div>
+          <div class="inpts">
+            <input
+              class="inpt"
+              placeholder="Burst Time"
+              id="bt"
+              type="number"
+              min="0"
+              oninput="validity.valid||(value='');"
+              required
+            />
+          </div>
+          <div class="inpts" id="prDiv">
+            <input
+              class="inpt"
+              placeholder="Priority"
+              id="pr"
+              type="number"
+              min="0"
+              oninput="validity.valid||(value='');"
+              title="Lower the value more will be the priority"
+            />
+          </div>
+
+          <div class="but" id="delete">
+            <input type="button" value="Delete Process" class="butt" id="del" />
+          </div>
+          <div class="but" id="add">
+            <input type="button" value="Add Process" class="butt" />
+          </div>
+        </form>
+      </div>
+
+      <div class="algo">
+        <input class="inpt" placeholder="" readonly id="algo" />
+      </div>
+
+      <div class="display">
+        <table id="myTable">
+          <tr>
+            <th>process id</th>
+            <th>arrival time</th>
+            <th>burst time</th>
+            <th>priority</th>
+          </tr>
+          <tbody id="tableBody"></tbody>
+        </table>
+        <div class="but" id="back">
+          <input type="submit" value="Back" class="butt" id="backb" />
+        </div>
+
+        <div class="but" id="sim">
+          <input
+            type="submit" value="Start Simulation" class="butt" id="simulation"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="input.js"></script>
+  </body>
+</html>

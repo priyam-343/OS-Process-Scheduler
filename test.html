@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page</title>
+    <link rel="icon" href="cpuu.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="test.css">
+</head>
+<body>
+    <h1>CPU Scheduling Visualization</h1>
+    <div class="content-wrapper">
+<div class="layout-row">
+
+        <div id="process-table">
+            <h2 id="algoInfo">Table of Processes</h2>
+            <table id="myTable1">
+                <tr>
+                    <th>Process Id</th>
+                    <th>Arrival Time</th>
+                    <th>Burst Time</th>
+                    <th>Priority</th>
+                    <th>Completion Time</th>
+                    <th>Turnaround Time</th>
+                    <th>Waiting Time</th>
+                </tr>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+
+
+        <div id="bar-chart">
+            <h2>Bar Chart</h2>
+            <div id="process-details">
+                <table id="myTable2">
+                    <tr>
+                        <th>Process ID</th>
+                        <th width="50%">Status</th>
+                        <th>Remaining Burst Time</th>
+                        <th>Response Time</th>
+                    </tr>
+                    <tbody id="tableBody2">
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="containerr" id="giantt">
+        <h2>Gantt Chart</h2>
+        <div class="status-barr">
+            <table id="table3">
+                <tbody id="tableBody3">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Performance Metrics</h2>
+        <div class="field">
+            <label>Average Turnaround Time:</label>
+            <span class="value" id="tatValue">--</span>
+        </div>
+        <div class="field">
+            <label>Average Wait Time:</label>
+            <span class="value" id="wtValue">--</span>
+        </div>
+    </div>
+    </div>
+
+   
+    <div class="button-row">
+        <button id="play-again-button" style="display: none;">Play Again</button>
+        <button id="play-another" style="display: none;">Play Another</button>
+    </div>
+
+    <script src="test.js"></script>
+</body>
+</html>

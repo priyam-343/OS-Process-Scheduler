@@ -1,0 +1,222 @@
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 3em;
+    padding-bottom: 5em;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+
+    background-image: url('./bg\ image.jpeg');
+    background-size: cover;                
+    background-position: center center;  
+    background-repeat: no-repeat;        
+    background-attachment: scroll;        
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;         
+  min-height: 100vh;
+}
+
+.header-section {
+    text-align: center;
+    color: white;
+    z-index: 3;
+    position: relative;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.cpu-icon{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cpu-image {
+    width: 10%;
+    height: 10%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.main-title {
+    font-size: 4em;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+    text-shadow: 0.1em 0.1em 0.25em rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif;
+}
+
+.description {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 auto 0 auto;
+    margin-top: 0.25em;
+    max-width: 90%;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    text-shadow: 0.05em 0.05em 0.15em rgba(0, 0, 0, 0.5);
+}
+
+/* Form Container */
+.box {
+    width: 90%;
+    max-width: 28em;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1.5em;
+    margin: 1em 0 3em 0; 
+    border-radius: 1em;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0.5em 2em;
+    z-index: 2;
+    position: relative;
+}
+
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('./bg\ image.jpeg');
+    background-size: 100% auto;  
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.signup {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border: none;
+    padding: 0;
+}
+
+.signup::before {
+    content: '⚙️ Configuration';
+    display: block;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-family: Arial, sans-serif;
+}
+
+.input-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875em;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+}
+
+.inpt, .inpts {
+    width: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.75em;
+    height: 3em;
+    font-size: 1em;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 0 1em;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease;
+    margin-top: 0.5em;
+    box-sizing: border-box;
+}
+
+#inputs {
+    position: relative;
+    margin-top: 0; 
+}
+
+#timeQuanta {
+    margin-top: 0em; 
+    position: relative;
+}
+
+#timeQuantaLabel {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875em;
+    font-weight: 500;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-family: Arial, sans-serif;
+}
+
+.inpt:focus, .inpts:focus {
+    outline: none;
+    border-color: rgba(0, 188, 212, 0.5);
+    box-shadow: 0 0 0 0.2em rgba(0, 188, 212, 0.1);
+}
+
+.inpt::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.inpts option {
+    background: rgba(30, 30, 30, 0.95);
+    color: white;
+    padding: 0.5em;
+}
+
+.but {
+    margin-top: 2.5em; 
+    width: 100%;
+    position: relative;
+}
+
+.butt {
+    align-items: center;
+    background: linear-gradient(45deg, #00bcd4, #2196f3);
+    border: none;
+    border-radius: 0.75em;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0.25em 1em;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: Arial, sans-serif;
+    font-size: 1.125em;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    min-height: 3em;
+    padding: 0.75em 1.5em;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.butt:hover {
+    background: linear-gradient(45deg, #00acc1, #1976d2);
+    box-shadow: rgba(0, 0, 0, 0.4) 0 0.375em 1.25em;
+    transform: translateY(-0.125em) scale(1.05);
+}
+
+
+
+
