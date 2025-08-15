@@ -2,7 +2,8 @@ OS Process Scheduler
 
 An interactive web application designed to visualize and simulate various CPU scheduling algorithms. This tool provides a clear, step-by-step animation of how processes are handled by a CPU, complete with a dynamic Gantt chart and key performance metrics. It's built as a learning aid for students and developers to understand core operating system concepts.
 
-Features
+Features:
+
 Scheduling Algorithms: Supports a range of common algorithms to demonstrate different scheduling policies.
 
 First-Come, First-Served (FCFS)
