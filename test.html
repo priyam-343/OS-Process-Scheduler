@@ -1,80 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Main Page</title>
-    <link rel="icon" href="cpuu.png" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="test.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulation</title>
+    <link rel="icon" href="cpuu.png" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="test.css" />
 </head>
 <body>
-    <h1>CPU Scheduling Visualization</h1>
-    <div class="content-wrapper">
-<div class="layout-row">
+    <div class="background-texture"></div>
+    <main class="app-container">
+        <header class="app-header">
+            <h1 class="app-title">CPU Scheduling Simulation</h1>
+        </header>
 
-        <div id="process-table">
-            <h2 id="algoInfo">Table of Processes</h2>
-            <table id="myTable1">
-                <tr>
-                    <th>Process Id</th>
-                    <th>Arrival Time</th>
-                    <th>Burst Time</th>
-                    <th>Priority</th>
-                    <th>Completion Time</th>
-                    <th>Turnaround Time</th>
-                    <th>Waiting Time</th>
-                </tr>
-                <tbody id="tableBody">
-                </tbody>
-            </table>
-        </div>
+        <section class="simulation-layout">
 
+            <div class="card process-info-card">
+                <h2 class="card-title" id="algoInfo">Table of Processes</h2>
+                <div class="table-scroll-area">
+                    <table class="data-table" id="myTable1">
+                        <thead>
+                            <tr>
+                                <th>Process ID</th>
+                                <th>Arrival Time</th>
+                                <th>Burst Time</th>
+                                <th>Priority</th>
+                                <th>Completion Time</th>
+                                <th>Turnaround Time</th>
+                                <th>Waiting Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
 
-        <div id="bar-chart">
-            <h2>Bar Chart</h2>
-            <div id="process-details">
-                <table id="myTable2">
-                    <tr>
-                        <th>Process ID</th>
-                        <th width="50%">Status</th>
-                        <th>Remaining Burst Time</th>
-                        <th>Response Time</th>
-                    </tr>
-                    <tbody id="tableBody2">
-                        <tr></tr>
-                    </tbody>
+            <div class="card status-card">
+                <h2 class="card-title">Live Status</h2>
+                <div class="status-content">
+                    <div class="table-scroll-area">
+                        <table class="data-table" id="myTable2">
+                            <thead>
+                                <tr>
+                                    <th>Process ID</th>
+                                    <th style="width: 50%;">Status</th>
+                                    <th>Rem. Burst Time</th>
+                                    <th>Response Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody2">
+                                <tr style="display: none;"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="card gantt-card">
+            <h2 class="card-title">Gantt Chart</h2>
+            <div class="table-scroll-area gantt-chart-area">
+                <table class="gantt-chart-table" id="table3">
+                    <tbody id="tableBody3"></tbody>
                 </table>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="containerr" id="giantt">
-        <h2>Gantt Chart</h2>
-        <div class="status-barr">
-            <table id="table3">
-                <tbody id="tableBody3">
-                </tbody>
-            </table>
-        </div>
-    </div>
+        <section class="card metrics-card">
+            <h2 class="card-title">Performance Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric">
+                    <label>Average Turnaround Time:</label>
+                    <span class="value" id="tatValue">--</span>
+                </div>
+                <div class="metric">
+                    <label>Average Waiting Time:</label>
+                    <span class="value" id="wtValue">--</span>
+                </div>
+            </div>
+        </section>
 
-    <div class="container">
-        <h2>Performance Metrics</h2>
-        <div class="field">
-            <label>Average Turnaround Time:</label>
-            <span class="value" id="tatValue">--</span>
+        <div class="button-bar">
+            <button id="play-again-button" class="btn btn-secondary" style="display: none;">
+                <i class="fas fa-redo-alt"></i> Play Again
+            </button>
+            <button id="play-another" class="btn btn-primary" style="display: none;">
+                <i class="fas fa-microchip"></i> Play Another
+            </button>
         </div>
-        <div class="field">
-            <label>Average Wait Time:</label>
-            <span class="value" id="wtValue">--</span>
-        </div>
-    </div>
-    </div>
-
-   
-    <div class="button-row">
-        <button id="play-again-button" style="display: none;">Play Again</button>
-        <button id="play-another" style="display: none;">Play Another</button>
-    </div>
-
+    </main>
     <script src="test.js"></script>
 </body>
 </html>

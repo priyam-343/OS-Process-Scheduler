@@ -2,96 +2,77 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Input Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Process Input</title>
     <link rel="icon" href="cpuu.png" type="image/x-icon" />
     <link rel="stylesheet" href="./input.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   </head>
-
   <body>
-    <div class="box">
-      <h2 id="signupp">Input Field</h2>
-
-      <div class="take">
-        <form>
-          <div class="inpts">
-            <input
-              class="inpt"
-              placeholder="Process Id "
-              id="pid"
-              title="E.g: p1"
-              required
-            />
-          </div>
-          <div class="inpts">
-            <input
-              class="inpt"
-              placeholder="Arrival Time"
-              id="at"
-              type="number"
-              min="0"
-              oninput="validity.valid||(value='');"
-              required
-            />
-
-          </div>
-          <div class="inpts">
-            <input
-              class="inpt"
-              placeholder="Burst Time"
-              id="bt"
-              type="number"
-              min="0"
-              oninput="validity.valid||(value='');"
-              required
-            />
-          </div>
-          <div class="inpts" id="prDiv">
-            <input
-              class="inpt"
-              placeholder="Priority"
-              id="pr"
-              type="number"
-              min="0"
-              oninput="validity.valid||(value='');"
-              title="Lower the value more will be the priority"
-            />
-          </div>
-
-          <div class="but" id="delete">
-            <input type="button" value="Delete Process" class="butt" id="del" />
-          </div>
-          <div class="but" id="add">
-            <input type="button" value="Add Process" class="butt" />
-          </div>
-        </form>
-      </div>
-
-      <div class="algo">
-        <input class="inpt" placeholder="" readonly id="algo" />
-      </div>
-
-      <div class="display">
-        <table id="myTable">
-          <tr>
-            <th>process id</th>
-            <th>arrival time</th>
-            <th>burst time</th>
-            <th>priority</th>
-          </tr>
-          <tbody id="tableBody"></tbody>
-        </table>
-        <div class="but" id="back">
-          <input type="submit" value="Back" class="butt" id="backb" />
+    <div class="background-texture"></div>
+    <main class="app-container">
+      <header class="page-header">
+        <h1 class="page-title">Input Processes</h1>
+        <div class="algo-info-container">
+          <input class="algo-input" placeholder="" readonly id="algo" />
         </div>
+      </header>
 
-        <div class="but" id="sim">
-          <input
-            type="submit" value="Start Simulation" class="butt" id="simulation"
-          />
-        </div>
+      <div class="main-layout">
+        <section class="input-form-card">
+          <h2 class="card-subtitle">Add Process</h2>
+          <form class="input-form">
+            <div class="form-group">
+              <input class="form-input" id="pid" type="text" placeholder="Process Id" title="E.g: p1" required />
+            </div>
+            <div class="form-group">
+              <input class="form-input" id="at" type="number" placeholder="Arrival Time" min="0" oninput="validity.valid||(value='');" required />
+            </div>
+            <div class="form-group">
+              <input class="form-input" id="bt" type="number" placeholder="Burst Time" min="0" oninput="validity.valid||(value='');" required />
+            </div>
+            <div class="form-group" id="prDiv">
+              <input class="form-input" id="pr" type="number" placeholder="Priority" min="0" oninput="validity.valid||(value='');" title="Lower the value more will be the priority" />
+            </div>
+            <div class="button-group form-actions">
+              <button type="button" class="btn btn-secondary" id="delete">
+                <i class="fas fa-trash-alt"></i> Delete Last
+              </button>
+              <button type="button" class="btn btn-primary" id="add">
+                <i class="fas fa-plus"></i> Add Process
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="table-container">
+          <h2 class="card-subtitle">Process List</h2>
+          <div class="table-scroll-area">
+            <table class="process-table" id="myTable">
+              <thead>
+                <tr>
+                  <th>Process ID</th>
+                  <th>Arrival Time</th>
+                  <th>Burst Time</th>
+                  <th>Priority</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </section>
       </div>
-    </div>
 
+      <div class="button-bar">
+        <button type="button" class="btn btn-secondary" id="back">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button type="button" class="btn btn-primary" id="simulation">
+          <i class="fas fa-play"></i> Start Simulation
+        </button>
+      </div>
+    </main>
     <script type="module" src="input.js"></script>
   </body>
 </html>

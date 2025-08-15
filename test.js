@@ -1,4 +1,3 @@
-
 let pInfo=null;
 const storedData =localStorage.getItem("pInfo");
 pInfo = JSON.parse(storedData);
@@ -38,7 +37,7 @@ pInfo = JSON.parse(storedData);
 
 
     let n=pInfo.data.length;let i=0;
-    const uniqueColors = ["#FFB6C1", "#66CDAA", "#3CB371", "#FF7F50", "	#DC143C", "#708090","#C71585","#4B0082","#008B8B","	#BDB76B"];
+    const uniqueColors = ["#FF4500", "#FF8C00","#8B0000","#FF69B4","#4B0082", "#006400" ,"#654321","#00008B", "#FFFF00", "#87CEEB"];
     while(i<n){
         
       var tableBody = document.getElementById("tableBody");
@@ -107,5 +106,4 @@ pInfo = JSON.parse(storedData);
   window.location.href = "index.html"; 
  }
  playButton.addEventListener("click",handlePlayButton);
- playAnother.addEventListener("click",handlePlayAnother);
-
+ playAnother.addEventListener("click",handlePlayAnother); 

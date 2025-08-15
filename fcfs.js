@@ -1,10 +1,12 @@
+// This script implements the First-Come, First-Served (FCFS) CPU scheduling algorithm.
+// It is designed to be robust and handle edge cases like processes with 0 burst time.
 
 let prInfo = null;
 const storeddData = localStorage.getItem("pInfo");
 prInfo = JSON.parse(storeddData);
 let inpt = prInfo.data;
 
-//Make a new Process array
+// Make a new Process array, ensuring all values are correctly parsed as numbers.
 let size = prInfo.data.length;
 let process = [];
 for (let i = 0; i < size; i++) {
@@ -20,91 +22,89 @@ for (let i = 0; i < size; i++) {
   process.push(obj);
 }
 
-//Map the colors with the PID of process
-// uniqueColors = ["#FFB6C1", "#66CDAA", "#3CB371", "#FF7F50", "\t#DC143C", "#708090","#C71585","#4B0082","#008B8B","\t#BDB76B"];
+// Map the colors with the PID of each process for animation.
 const mp = new Map();
 for (let i = 0; i < size; i++) {
   mp.set(inpt[i].pid, i);
 }
 
-//Sort the Process array based on AT
-for (let i = 0; i < size - 1; i++) {
-  for (let j = 0; j < size - i - 1; j++) {
-    if (process[j].at > process[j + 1].at) {
-      const temp = process[j];
-      process[j] = process[j + 1];
-      process[j + 1] = temp;
-    }
-  }
-}
+// Sort the Process array based on Arrival Time (AT) for FCFS logic.
+process.sort((a, b) => a.at - b.at);
 
-//Filling Gantt Chart
+// The Gantt chart holds the timeline of process execution.
 let gChart = [];
 let timer = 0;
-timer = timer + process[0].at;
-if (0 < process[0].at) {
-  let obj = {
+let totalWaitTime = 0;
+let totalTurnaroundTime = 0;
+
+// Handle potential initial idle time before the first process arrives.
+if (process.length > 0 && process[0].at > 0) {
+  gChart.push({
     pid: "idle",
     start: 0,
     end: process[0].at,
-  };
-  gChart.push(obj);
+  });
+  timer = process[0].at;
+} else if (process.length > 0) {
+    timer = process[0].at;
 }
 
+// Run the FCFS scheduling logic.
 for (let i = 0; i < size; i++) {
+  let currentProcess = process[i];
   let save = timer;
-  timer = timer + process[i].bt;
-  process[i].ct = timer;
-  process[i].tat = process[i].ct - process[i].at;
-  process[i].wt = process[i].tat - process[i].bt;
 
-  let obj2 = null;
-  if (i + 1 < size && timer < process[i + 1].at) {
-    obj2 = {
+  // Handle idle time between processes.
+  if (timer < currentProcess.at) {
+    gChart.push({
       pid: "idle",
-      start: process[i].ct,
-      end: process[i + 1].at,
-    };
-    timer = process[i + 1].at;
+      start: timer,
+      end: currentProcess.at,
+    });
+    timer = currentProcess.at;
+    save = timer; // Update save to the new timer value.
   }
+  
+  timer += currentProcess.bt;
+  currentProcess.ct = timer;
+  currentProcess.tat = currentProcess.ct - currentProcess.at;
+  currentProcess.wt = currentProcess.tat - currentProcess.bt;
 
-
-  const obj = {
-    pid: process[i].pid,
-    tat: process[i].tat,
+  gChart.push({
+    pid: currentProcess.pid,
+    tat: currentProcess.tat,
     start: save,
-    end: process[i].ct,
-    at: process[i].at,
-    bt: process[i].bt,
-    wt: process[i].wt,
-  };
+    end: currentProcess.ct,
+    at: currentProcess.at,
+    bt: currentProcess.bt,
+    wt: currentProcess.wt,
+  });
 
-  gChart.push(obj);
-  if (obj2 != null) gChart.push(obj2);
+  totalWaitTime += currentProcess.wt;
+  totalTurnaroundTime += currentProcess.tat;
 }
 
-//Create Entries in the Gantt Chart
-let tableBody3 = document.getElementById("tableBody3");
-var newRow = tableBody3.insertRow();
+// Create entries in the Gantt Chart DOM.
+let tableBody3 = document.getElementById("table3");
+let newRowHeader = tableBody3.insertRow();
 let gSize = gChart.length;
 for (let i = 0; i < gSize; i++) {
-  var cell = newRow.insertCell(i);
+  let cell = newRowHeader.insertCell(i);
   cell.style.textAlign = "center";
 }
 
-newRow = tableBody3.insertRow();
+let newRowData = tableBody3.insertRow();
 for (let i = 0; i < gSize; i++) {
-  var cell = newRow.insertCell(i);
+  let cell = newRowData.insertCell(i);
   cell.id = "giantData";
   cell.style.textAlign = "center";
 }
 
-let wait = 0;
-let tatime = 0;
+// Get DOM elements for performance metrics and tables.
 let table = document.getElementById("myTable1");
 let table2 = document.getElementById("myTable2");
 
-//Handle Animation
+// Handle Animation
 async function myAsyncFunction() {
   for (let i = 0; i < gSize; i++) {
     let id = gChart[i].pid;
@@ -112,12 +112,11 @@ async function myAsyncFunction() {
     let end = gChart[i].end;
     let bt = gChart[i].bt;
     let at = gChart[i].at;
-    let cTime = gChart[i].end;
     let tatTime = gChart[i].tat;
     let wtTime = gChart[i].wt;
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    if (id == "idle") {
+    if (id === "idle") {
       let table3 = document.getElementById("table3");
       let c1 = table3.rows[0].cells[i];
       c1.textContent = id;
@@ -126,51 +125,47 @@ async function myAsyncFunction() {
       c2.textContent = `${start}-${end}`;
       continue;
     }
-
-    for (let j = 0; j < size; j++) {
-      let pidCell = table2.rows[j + 2].cells[0];
-      if (id == table.rows[j + 1].cells[0].textContent) {
-        pidCell.style.backgroundColor = uniqueColors[j % 10];
-        continue;
-      }
-      pidCell.style.backgroundColor = "";
-    }
-
+    
+    // Animate the progress bar for the current process.
     let row = -1;
     for (let j = 0; j < size; j++) {
-      if (id == table.rows[j + 1].cells[0].textContent) {
+      if (id === table.rows[j + 1].cells[0].textContent) {
         row = j + 1;
         break;
       }
     }
+    
+    let pidCell = table2.rows[row + 1].cells[0];
+    pidCell.style.backgroundColor = uniqueColors[mp.get(id) % 10];
 
     let statusBar = document.getElementById(id);
-    let wide = ((end - start) / bt) * 100;
-
+    // FIX: Handle burst time of 0 to prevent division by zero.
+    let wide = (bt > 0) ? (((end - start) / bt) * 100) : 100;
+    
     await new Promise((resolve) => setTimeout(resolve, 500));
     statusBar.style.width = wide + "%";
-    statusBar.textContent = wide + "%";
-    statusBar.textAlign = "center";
+    // FIX: Display "100.00%" for processes with 0 burst time.
+    statusBar.textContent = (bt > 0) ? (wide.toFixed(2) + "%") : "100.00%";
+    statusBar.style.textAlign = "center";
 
+    // Update the live status table.
     let remBurstCell = table2.rows[row + 1].cells[2];
     remBurstCell.textContent = 0;
-
+    
     let responseCell = table2.rows[row + 1].cells[3];
-    if (responseCell.textContent == "--") {
+    if (responseCell.textContent === "--") {
       responseCell.textContent = start - at;
     }
 
+    // Update the final process table.
     const ct = table.rows[row].cells[4];
     const tat = table.rows[row].cells[5];
     const wt = table.rows[row].cells[6];
-
-    ct.textContent = cTime;
+    ct.textContent = end;
     tat.textContent = tatTime;
     wt.textContent = wtTime;
-
-    wait += wtTime;
-    tatime += tatTime;
-
+    
+    // Populate the Gantt chart in the DOM.
     await new Promise((resolve) => setTimeout(resolve, 1000));
     let table3 = document.getElementById("table3");
     let c1 = table3.rows[0].cells[i];
@@ -180,26 +175,24 @@ async function myAsyncFunction() {
     c2.textContent = `${start}-${end}`;
   }
 
-  //Performance Metrics Calculations
-  let avgWt = wait / size;
-  let avgTat = tatime / size;
+  // Final performance metric display.
   await new Promise((resolve) => setTimeout(resolve, 100));
+  let avgWt = totalWaitTime / size;
+  let avgTat = totalTurnaroundTime / size;
   let tatValue = document.getElementById("tatValue");
   tatValue.innerText = `${avgTat.toFixed(2)} ms`;
 
   let wtValue = document.getElementById("wtValue");
-  wtValue.innerText = avgWt.toFixed(2) + " ms";
+  wtValue.innerText = `${avgWt.toFixed(2)} ms`;
 
-  let playButton = document.getElementById("play-again-button");
-  playButton.style.display = "block";
-
-  let playAnother = document.getElementById("play-another");
-  playAnother.style.display = "block";
-
+  // Display the final action buttons.
+  document.getElementById("play-again-button").style.display = "block";
+  document.getElementById("play-another").style.display = "block";
+  
+  // Reset PID cell colors for a clean final view.
   for (let j = 0; j < size; j++) {
     let pidCell = table2.rows[j + 2].cells[0];
     pidCell.style.backgroundColor = uniqueColors[j % 10];
   }
 }
-
 myAsyncFunction();
