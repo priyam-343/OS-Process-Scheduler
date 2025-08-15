@@ -50,7 +50,8 @@ Font Awesome for icons
 
 localStorage for seamless data transfer between pages
 
-How to Use
+How to Use:
+
 Clone the repository:
 
 git clone https://github.com/priyam-343/OS-Process-Scheduler.git
@@ -62,6 +63,7 @@ cd OS-Process-Scheduler
 
 
 Open the application:
+
 Open the index.html file in any modern web browser.
 
 Configure: On the main page, select a scheduling algorithm, an input type, and a time quanta (if applicable).
