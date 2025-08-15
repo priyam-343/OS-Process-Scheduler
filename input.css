@@ -314,3 +314,66 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem 0.5rem;
+    max-width: 100%;
+  }
+
+  .main-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .input-form-card,
+  .table-container {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .table-scroll-area {
+    max-height: 400px; 
+    overflow-x: auto; 
+  }
+
+  .process-table {
+    display: block;
+    white-space: nowrap; 
+  }
+
+  .process-table thead, .process-table tbody, .process-table tr {
+    display: inline-block;
+  }
+  
+  .process-table thead th {
+    display: block;
+    border-bottom: none;
+  }
+  
+  .process-table tbody td {
+    display: block;
+    text-align: left;
+    border-top: none;
+  }
+  
+  .button-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .button-bar .btn {
+    width: 100%;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .form-input, .btn {
+    font-size: 0.9rem;
+  }
+}
