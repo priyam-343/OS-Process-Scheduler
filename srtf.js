@@ -1,6 +1,3 @@
-// This script implements the Shortest Remaining Time First (SRTF) CPU scheduling algorithm.
-// This is a preemptive algorithm, so the simulation is run per time unit.
-
 let proInfo = null;
 const storedDataa = localStorage.getItem("pInfo");
 proInfo = JSON.parse(storedDataa);
@@ -23,13 +20,11 @@ for (let i = 0; i < size; i++) {
   process.push(obj);
 }
 
-// A map to quickly get the original index for a process ID.
 const mp = new Map();
 for (let i = 0; i < proInfo.length; i++) {
   mp.set(proInfo[i].pid, i);
 }
 
-// Sort the processes by arrival time initially.
 process.sort((a, b) => a.at - b.at);
 
 let gChart = [];
@@ -41,7 +36,6 @@ let responseTimes = new Map();
 let firstRun = new Set();
 let allProcesses = [...process];
 
-// SRTF scheduling logic.
 const srtf = () => {
     let timer = 0;
     let completedCount = 0;
@@ -50,7 +44,6 @@ const srtf = () => {
         let minRbt = Infinity;
         let selectedProcess = null;
 
-        // Find the process with the shortest remaining burst time that has arrived
         for (const p of allProcesses) {
             if (!p.isCompleted && p.at <= timer && p.rbt < minRbt) {
                 minRbt = p.rbt;
@@ -135,7 +128,6 @@ const srtf = () => {
 };
 srtf();
 
-// Set up the DOM for animation.
 let tableBody3 = document.getElementById("table3");
 let newRowHeader = tableBody3.insertRow();
 let gSize = gChart.length;
@@ -158,7 +150,6 @@ let completionTimes = new Map();
 let turnaroundTimes = new Map();
 let waitingTimes = new Map();
 
-// FIX: Calculate all metrics before animation for consistency.
 for (let i = 0; i < size; i++) {
     const p = process[i];
     completionTimes.set(p.pid, p.ct);
@@ -166,7 +157,6 @@ for (let i = 0; i < size; i++) {
     waitingTimes.set(p.pid, p.wt);
 }
 
-// Handle Animation
 async function myAsyncFunction() {
   for (let i = 0; i < gSize; i++) {
     let id = gChart[i].pid;
@@ -189,7 +179,6 @@ async function myAsyncFunction() {
     let originalProcess = process.find(p => p.pid === id);
     let bt = originalProcess.bt;
     
-    // FIX: Calculate the current remaining burst time for the animation
     let timeElapsedInGanttSegment = (end - start);
     let cumulativeTimeElapsed = 0;
     for(let j = 0; j <= i; j++){
